@@ -46,7 +46,7 @@ python3 macos.py
 ---
 ## Demo
 
-![QuickShare Demo](assets/demo.gif)
+<video src="assets/demo.mp4" controls width="800"></video>
 
 ## Example
 
