@@ -44,6 +44,9 @@ python3 macos.py
 ```
 
 ---
+## Demo
+
+![QuickShare Demo](assets/demo.gif)
 
 ## Example
 
