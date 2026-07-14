@@ -1,60 +1,46 @@
 # 🚀 QuickShare
 
-QuickShare is a lightweight Python utility that allows you to quickly share a single file over your local network using Python's built-in HTTP server.
+QuickShare is a lightweight Python utility that lets you quickly share a **single file** from your **macOS host** to a **virtual machine** over your local network.
 
-It was created to simplify transferring files from a host machine to a virtual machine during Hack The Box (HTB), TryHackMe (THM), CTFs, and penetration testing labs.
-
-Instead of manually starting an HTTP server and typing download URLs, QuickShare automates the entire process.
+It was built to simplify file transfers during Hack The Box (HTB), TryHackMe (THM), and CTF labs. Instead of manually starting an HTTP server and typing download URLs every time, QuickShare automates the process.
 
 ---
 
 ## Features
 
 * 📂 Lists all files in the current directory
-* 🔢 Select a file using its number
+* 🔢 Select a file by number
 * 📦 Shares only the selected file
-* 🌐 Automatically detects your local IP address
+* 🌐 Automatically detects your Mac's local IPv4 address (`en0`)
 * 📋 Copies the download command to your clipboard
-* ⬇️ Stops automatically after the first successful download
+* ⬇️ Automatically stops after the first successful download
 * 🧹 Cleans up temporary files automatically
-* 🐍 Built using only Python's standard library (no third-party packages)
+* 🐍 Uses only Python's standard library (no external dependencies)
 
 ---
 
-## Supported Platforms
+## Requirements
 
-* ✅ macOS
-* ✅ Linux
-* ✅ Windows
+* macOS
+* Python 3.8 or later
 
-Each platform has its own script:
-
-```text
-macos.py
-linux.py
-windows.py
-```
+No third-party Python packages are required.
 
 ---
 
 ## Usage
 
-### macOS
+Clone the repository:
+
+```bash
+git clone https://github.com/leathermajesty/quickshare.git
+cd quickshare
+```
+
+Run QuickShare:
 
 ```bash
 python3 macos.py
-```
-
-### Linux
-
-```bash
-python3 linux.py
-```
-
-### Windows
-
-```powershell
-python windows.py
 ```
 
 ---
@@ -81,9 +67,9 @@ wget http://192.168.1.12:1234/linpeas.sh
 Waiting for one download...
 ```
 
-Simply paste the copied command into your VM and press **Enter**.
+Paste the copied command into your VM and press **Enter**.
 
-After the download finishes, the server automatically stops.
+After the download completes, QuickShare automatically shuts down the server.
 
 ---
 
@@ -92,30 +78,9 @@ After the download finishes, the server automatically stops.
 * Hack The Box
 * TryHackMe
 * Capture The Flag (CTFs)
-* Penetration Testing
-* Local file transfers
-* Sharing payloads, VPN files, scripts, or tools
-
----
-
-## Requirements
-
-* Python 3.8+
-* No external Python libraries
-
-Platform-specific clipboard utilities:
-
-### macOS
-
-* `pbcopy` (built in)
-
-### Linux
-
-* `xclip` or `xsel`
-
-### Windows
-
-* `clip` (built in)
+* Sharing VPN configuration files
+* Transferring enumeration scripts and payloads
+* Moving files from macOS to a Linux VM
 
 ---
 
@@ -124,8 +89,6 @@ Platform-specific clipboard utilities:
 ```text
 quickshare/
 ├── macos.py
-├── linux.py
-├── windows.py
 ├── README.md
 ├── FUNCTION.md
 └── LICENSE
@@ -139,9 +102,4 @@ This project is licensed under the MIT License.
 
 ---
 
-## Contributing
-
-Bug reports, feature requests, and pull requests are welcome.
-
-If QuickShare saves you a few minutes every HTB or THM session, consider giving the repository a ⭐.
-
+If QuickShare saves you time during your labs, consider giving the repository a ⭐.
