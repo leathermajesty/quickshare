@@ -46,8 +46,7 @@ python3 macos.py
 ---
 ## Demo
 
-<video src="assets/demo.mp4" controls width="800"></video>
-
+https://github.com/user-attachments/assets/85bd655c-8d34-49c4-a642-2c7b551f0284
 ## Example
 
 ```text
