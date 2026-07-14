@@ -86,17 +86,6 @@ After the download completes, QuickShare automatically shuts down the server.
 
 ---
 
-## Project Structure
-
-```text
-quickshare/
-├── macos.py
-├── README.md
-├── FUNCTION.md
-└── LICENSE
-```
-
----
 
 ## License
 
