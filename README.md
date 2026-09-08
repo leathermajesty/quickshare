@@ -6,6 +6,51 @@ It was built while solving **Hack The Box (HTB)**, **TryHackMe (THM)**, and **CT
 
 ---
 
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/leathermajesty/quickshare.git
+cd quickshare
+```
+
+That's it. No virtual environment or dependencies needed for basic usage.
+
+**Optional:** Install `qrcode` to enable QR code generation for mobile downloads:
+
+```bash
+pip3 install qrcode
+```
+
+---
+
+## Usage
+
+### macOS
+
+```bash
+python3 src/macos.py
+```
+
+Select the file you want to share, then switch to your VM and paste the copied `wget` command. If `qrcode` is installed, a scannable QR code will also be displayed for Android downloads.
+
+### Windows
+
+```cmd
+python src\windows.py
+```
+
+Select the file you want to share. QuickShare will create a temporary HTTP server and generate a download command. Copy the command and run it inside your VM.
+
+---
+
+## Demo
+
+https://github.com/user-attachments/assets/85bd655c-8d34-49c4-a642-2c7b551f0284
+
+---
+
 ## Why I Built This
 
 During HTB and THM labs, I frequently needed to transfer files such as VPN configurations, enumeration scripts, payloads, and other tools to my VM.
@@ -29,12 +74,14 @@ Although the process only takes a minute, repeating it multiple times during eve
 
 * 📂 Lists all files in the current directory
 * 🔢 Select a file by number
-* 📦 Shares only the selected file
+* 📦 Shares only the selected file (served from a temporary directory for security)
 * 🌐 Automatically detects local IPv4 address
 * 📋 Generates a ready-to-use `wget` command
-* 📱 Generates a QR code for easy sharing to Android devices (macOS)
+* 📋 Auto-copies the command to clipboard (macOS)
+* 📱 Generates a QR code for easy mobile downloads *(optional, requires `qrcode`)*
 * ⬇️ Automatically stops after the first successful download
 * 🧹 Cleans up temporary files automatically
+* 🐍 Zero dependencies for core functionality (Python standard library only)
 
 ---
 
@@ -59,66 +106,9 @@ quickshare/
 │   └── windows.py        # Windows script
 ├── assets/               # Demo videos and GIFs
 ├── .gitignore
-├── requirements.txt
+├── requirements.txt      # Optional dependencies
 └── README.md
 ```
-
----
-
-## Installation
-
-Clone the repository and set up the virtual environment:
-
-```bash
-git clone https://github.com/leathermajesty/quickshare.git
-cd quickshare
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
-```
-
-On Windows, activate the virtual environment with:
-
-```cmd
-venv\Scripts\activate
-pip install -r requirements.txt
-```
-
----
-
-# Usage
-
-## macOS
-
-Activate the virtual environment and run the script:
-
-```bash
-source venv/bin/activate
-python3 src/macos.py
-```
-
-Select the file you want to share, then switch to your VM and paste the copied command, or scan the QR code on your Android device.
-
----
-
-## Windows
-
-Activate the virtual environment and run the script:
-
-```cmd
-venv\Scripts\activate
-python src\windows.py
-```
-
-Select the file you want to share. QuickShare will create a temporary HTTP server and generate a download command.
-
-Copy the generated command and run it inside your VM.
-
----
-
-## Demo
-
-https://github.com/user-attachments/assets/85bd655c-8d34-49c4-a642-2c7b551f0284
 
 ---
 
@@ -127,7 +117,6 @@ https://github.com/user-attachments/assets/85bd655c-8d34-49c4-a642-2c7b551f0284
 ### macOS
 
 ```text
-$ source venv/bin/activate
 $ python3 src/macos.py
 
 Available Files:
@@ -146,19 +135,18 @@ wget http://192.168.1.12:1234/payload.sh
 
 Scan this QR code to download on your phone:
 
-█████████████████████████████
-█████████████████████████████
-████ ▄▄▄▄▄ █▄▄█▄█ ▄▄▄▄▄ ████
-████ █   █ █▀▄▄██ █   █ ████
-████ █▄▄▄█ ██▀▄▄█ █▄▄▄█ ████
-████▄▄▄▄▄▄▄█▄█▄██▄▄▄▄▄▄▄████
-████▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄████
-████ ▄▄▄▄▄ █ ▄▄██ ▄▄▄▄▄ ████
-████ █   █ █▀▀▄██ █   █ ████
-████ █▄▄▄█ ██ ▄▄█ █▄▄▄█ ████
-████▄▄▄▄▄▄▄█▄▄▄██▄▄▄▄▄▄▄████
-█████████████████████████████
-█████████████████████████████
+█▀▀▀▀▀▀▀█▀▀██▀▀▀▀██▀█▀█▀▀▀▀▀▀▀█
+█ █▀▀▀█ █▀█▀▀ ▀█▄█ ▄▀██ █▀▀▀█ █
+█ █   █ ██▀▀ ███    █ █ █   █ █
+█ ▀▀▀▀▀ █ █ █▀▄ █ █ █ █ ▀▀▀▀▀ █
+█▀█▀███▀▀██▀▀  █▀▀██ ███▀██▀█▀█
+██▀ █▀▀▀ ██▄▀▀▀▀█ ▀█ ▀█▄▀▀▀▀▄ █
+█▀▀▀▄▀█▀▀  █▀▀▀ ▄▄█▄ █▀ █████▀█
+█▀▀▀▀▀▀▀█ █▀▄ ▄▄▀▀▄█▄ █▀█ ▄▄█ █
+█ █▀▀▀█ ██ ███ █  ██▀ ▀▀▀ ██▄▄█
+█ █   █ █▀ █  ██ ▄██▀▀██▀ █▀ ▀█
+█ ▀▀▀▀▀ █▀▀▀ █▄ █▀█▄  █▀▀ ███▀█
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
 
 Waiting for one download...
 ```
@@ -170,6 +158,8 @@ wget http://192.168.1.12:1234/payload.sh
 ```
 
 Or scan the QR code with your Android phone to download the file directly.
+
+> **Note:** If `qrcode` is not installed, the QR code section is skipped and you'll see a hint to install it.
 
 ---
 
