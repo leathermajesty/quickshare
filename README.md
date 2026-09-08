@@ -50,6 +50,21 @@ Supported platforms:
 
 ---
 
+## Project Structure
+
+```
+quickshare/
+├── src/
+│   ├── macos.py          # macOS script
+│   └── windows.py        # Windows script
+├── assets/               # Demo videos and GIFs
+├── .gitignore
+├── requirements.txt
+└── README.md
+```
+
+---
+
 ## Installation
 
 Clone the repository and set up the virtual environment:
@@ -79,7 +94,7 @@ Activate the virtual environment and run the script:
 
 ```bash
 source venv/bin/activate
-python3 macos.py
+python3 src/macos.py
 ```
 
 Select the file you want to share, then switch to your VM and paste the copied command, or scan the QR code on your Android device.
@@ -92,7 +107,7 @@ Activate the virtual environment and run the script:
 
 ```cmd
 venv\Scripts\activate
-python windows.py
+python src\windows.py
 ```
 
 Select the file you want to share. QuickShare will create a temporary HTTP server and generate a download command.
@@ -113,21 +128,21 @@ https://github.com/user-attachments/assets/85bd655c-8d34-49c4-a642-2c7b551f0284
 
 ```text
 $ source venv/bin/activate
-$ python3 macos.py
+$ python3 src/macos.py
 
 Available Files:
 
-[1] macos.py
-[2] .DS_Store
-[3] README.md
+[1] payload.sh
+[2] linpeas.sh
+[3] chisel
 
 Select file number: 1
 
-Sharing: macos.py
+Sharing: payload.sh
 
 Download command (also copied to clipboard):
 
-wget http://192.168.1.12:1234/macos.py
+wget http://192.168.1.12:1234/payload.sh
 
 Scan this QR code to download on your phone:
 
@@ -151,7 +166,7 @@ Waiting for one download...
 On your VM, simply paste the copied command and press **Enter**:
 
 ```bash
-wget http://192.168.1.12:1234/macos.py
+wget http://192.168.1.12:1234/payload.sh
 ```
 
 Or scan the QR code with your Android phone to download the file directly.
@@ -161,7 +176,7 @@ Or scan the QR code with your Android phone to download the file directly.
 ### Windows
 
 ```text
-C:\QuickShare> python windows.py
+C:\QuickShare> python src\windows.py
 
 Available Files:
 
