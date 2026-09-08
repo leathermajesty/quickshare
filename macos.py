@@ -7,6 +7,8 @@ import subprocess
 import tempfile
 import threading
 
+import qrcode
+
 
 def get_en0_ip():
     return subprocess.check_output(
@@ -56,6 +58,14 @@ subprocess.run(["pbcopy"], input=command, text=True)
 print(f"\nSharing: {selected_file}\n")
 print("Download command (also copied to clipboard):\n")
 print(command)
+
+# Generate QR code for easy mobile downloads
+print("\nScan this QR code to download on your phone:\n")
+qr = qrcode.QRCode(border=1)
+qr.add_data(url)
+qr.make(fit=True)
+qr.print_ascii(invert=True)
+
 print("\nWaiting for one download...\n")
 
 

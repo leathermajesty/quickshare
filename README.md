@@ -1,6 +1,6 @@
 # 🚀 QuickShare
 
-QuickShare is a lightweight Python utility that lets you quickly share a **single file** from your **host machine** to a **virtual machine** over your local network.
+QuickShare is a lightweight Python utility that lets you quickly share a **single file** from your **host machine** to a **virtual machine** or **Android device** over your local network.
 
 It was built while solving **Hack The Box (HTB)**, **TryHackMe (THM)**, and **CTF** labs where transferring files from the host machine to the VM is a repetitive task.
 
@@ -32,17 +32,16 @@ Although the process only takes a minute, repeating it multiple times during eve
 * 📦 Shares only the selected file
 * 🌐 Automatically detects local IPv4 address
 * 📋 Generates a ready-to-use `wget` command
+* 📱 Generates a QR code for easy sharing to Android devices (macOS)
 * ⬇️ Automatically stops after the first successful download
 * 🧹 Cleans up temporary files automatically
-* 🐍 Built using only Python's standard library (no external dependencies)
 
 ---
 
 ## Requirements
 
 * Python 3.8 or later
-
-No third-party Python packages are required.
+* [qrcode](https://pypi.org/project/qrcode/) (installed automatically via `requirements.txt`)
 
 Supported platforms:
 
@@ -53,11 +52,21 @@ Supported platforms:
 
 ## Installation
 
-Clone the repository:
+Clone the repository and set up the virtual environment:
 
 ```bash
 git clone https://github.com/leathermajesty/quickshare.git
 cd quickshare
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+On Windows, activate the virtual environment with:
+
+```cmd
+venv\Scripts\activate
+pip install -r requirements.txt
 ```
 
 ---
@@ -66,21 +75,23 @@ cd quickshare
 
 ## macOS
 
-Run the script:
+Activate the virtual environment and run the script:
 
 ```bash
+source venv/bin/activate
 python3 macos.py
 ```
 
-Select the file you want to share, then switch to your VM and paste the copied command.
+Select the file you want to share, then switch to your VM and paste the copied command, or scan the QR code on your Android device.
 
 ---
 
 ## Windows
 
-Run the script from Command Prompt:
+Activate the virtual environment and run the script:
 
 ```cmd
+venv\Scripts\activate
 python windows.py
 ```
 
@@ -101,6 +112,7 @@ https://github.com/user-attachments/assets/85bd655c-8d34-49c4-a642-2c7b551f0284
 ### macOS
 
 ```text
+$ source venv/bin/activate
 $ python3 macos.py
 
 Available Files:
@@ -117,6 +129,22 @@ Download command (also copied to clipboard):
 
 wget http://192.168.1.12:1234/macos.py
 
+Scan this QR code to download on your phone:
+
+█████████████████████████████
+█████████████████████████████
+████ ▄▄▄▄▄ █▄▄█▄█ ▄▄▄▄▄ ████
+████ █   █ █▀▄▄██ █   █ ████
+████ █▄▄▄█ ██▀▄▄█ █▄▄▄█ ████
+████▄▄▄▄▄▄▄█▄█▄██▄▄▄▄▄▄▄████
+████▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄████
+████ ▄▄▄▄▄ █ ▄▄██ ▄▄▄▄▄ ████
+████ █   █ █▀▀▄██ █   █ ████
+████ █▄▄▄█ ██ ▄▄█ █▄▄▄█ ████
+████▄▄▄▄▄▄▄█▄▄▄██▄▄▄▄▄▄▄████
+█████████████████████████████
+█████████████████████████████
+
 Waiting for one download...
 ```
 
@@ -125,6 +153,8 @@ On your VM, simply paste the copied command and press **Enter**:
 ```bash
 wget http://192.168.1.12:1234/macos.py
 ```
+
+Or scan the QR code with your Android phone to download the file directly.
 
 ---
 
@@ -170,6 +200,7 @@ Once the download is complete, QuickShare automatically stops the HTTP server an
 * Sharing VPN configuration files
 * Transferring payloads and enumeration scripts
 * Moving tools between host machines and Linux VMs
+* Sharing files to Android devices on the same network
 
 ---
 
