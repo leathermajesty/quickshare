@@ -41,7 +41,7 @@ Although the process only takes a minute, repeating it multiple times during eve
 ## Requirements
 
 * Python 3.8 or later
-* [qrcode](https://pypi.org/project/qrcode/) (installed automatically via `requirements.txt`)
+* [qrcode](https://pypi.org/project/qrcode/) *(optional — enables QR code display for mobile downloads)*
 
 Supported platforms:
 

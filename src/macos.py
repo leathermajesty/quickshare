@@ -7,7 +7,11 @@ import subprocess
 import tempfile
 import threading
 
-import qrcode
+try:
+    import qrcode
+    HAS_QRCODE = True
+except ImportError:
+    HAS_QRCODE = False
 
 
 def get_en0_ip():
@@ -59,12 +63,15 @@ print(f"\nSharing: {selected_file}\n")
 print("Download command (also copied to clipboard):\n")
 print(command)
 
-# Generate QR code for easy mobile downloads
-print("\nScan this QR code to download on your phone:\n")
-qr = qrcode.QRCode(border=1)
-qr.add_data(url)
-qr.make(fit=True)
-qr.print_ascii(invert=True)
+# Generate QR code for easy mobile downloads (if qrcode is installed)
+if HAS_QRCODE:
+    print("\nScan this QR code to download on your phone:\n")
+    qr = qrcode.QRCode(border=1)
+    qr.add_data(url)
+    qr.make(fit=True)
+    qr.print_ascii(invert=True)
+else:
+    print("\n(Install 'qrcode' package for QR code: pip3 install qrcode)")
 
 print("\nWaiting for one download...\n")
 
