@@ -25,23 +25,22 @@ pip3 install qrcode
 
 ---
 
-## Usage
+### Usage
 
-### macOS
+Since QuickShare is fully cross-platform, you can run the exact same command on both macOS and Windows:
 
 ```bash
-python3 src/macos.py
+python3 src/quickshare.py
 ```
 
-Select the file you want to share, then switch to your VM and paste the copied `wget` command. If `qrcode` is installed, a scannable QR code will also be displayed for Android downloads.
-
-### Windows
-
+### Windows Users
+If `python3` isn't recognized on your Windows machine, try using `python` instead:
 ```cmd
-python src\windows.py
+python src\quickshare.py
 ```
 
-Select the file you want to share. QuickShare will create a temporary HTTP server and generate a download command. Copy the command and run it inside your VM.
+Select the file or directory you want to share. QuickShare will create a temporary HTTP server and generate a download command. 
+If you choose a directory, it will automatically zip it before sharing!
 
 ---
 
@@ -114,86 +113,48 @@ quickshare/
 
 ## Example
 
-### macOS
-
 ```text
-$ python3 src/macos.py
+$ python3 src/quickshare.py
 
-Available Files:
+╭──────────────────────────────────────────╮
+│                 QuickShare               │
+│          Fast LAN File Sharing           │
+╰──────────────────────────────────────────╯
 
-[1] payload.sh
-[2] linpeas.sh
-[3] chisel
+Available Files & Directories
+────────────────────────────────────────────
+  [1] FILE requirements.txt               12.0 B
+  [2] FILE README.md                      5.4 KB
+  [3] DIR  assets                         10.2 KB
+  [4] DIR  src                            21.1 KB
+────────────────────────────────────────────
 
-Select file number: 1
+Select item: 4
 
-Sharing: payload.sh
+✓ Ready to share
 
-Download command (also copied to clipboard):
+  Type      : Directory (ZIP)
+  Name      : src.zip
+  Size      : 6.0 KB
+  IP        : 192.168.1.12
+  Port      : 1234
+  Share ID  : 4
 
-wget http://192.168.1.12:1234/payload.sh
-
-Scan this QR code to download on your phone:
-
-█▀▀▀▀▀▀▀█▀▀██▀▀▀▀██▀█▀█▀▀▀▀▀▀▀█
-█ █▀▀▀█ █▀█▀▀ ▀█▄█ ▄▀██ █▀▀▀█ █
-█ █   █ ██▀▀ ███    █ █ █   █ █
-█ ▀▀▀▀▀ █ █ █▀▄ █ █ █ █ ▀▀▀▀▀ █
-█▀█▀███▀▀██▀▀  █▀▀██ ███▀██▀█▀█
-██▀ █▀▀▀ ██▄▀▀▀▀█ ▀█ ▀█▄▀▀▀▀▄ █
-█▀▀▀▄▀█▀▀  █▀▀▀ ▄▄█▄ █▀ █████▀█
-█▀▀▀▀▀▀▀█ █▀▄ ▄▄▀▀▄█▄ █▀█ ▄▄█ █
-█ █▀▀▀█ ██ ███ █  ██▀ ▀▀▀ ██▄▄█
-█ █   █ █▀ █  ██ ▄██▀▀██▀ █▀ ▀█
-█ ▀▀▀▀▀ █▀▀▀ █▄ █▀█▄  █▀▀ ███▀█
-▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
-
-Waiting for one download...
+VM / Linux
+────────────────────────────────────────────
+  wget http://192.168.1.12:1234/4
+  ✓ Command copied to clipboard
 ```
 
 On your VM, simply paste the copied command and press **Enter**:
 
 ```bash
-wget http://192.168.1.12:1234/payload.sh
+wget http://192.168.1.12:1234/4
 ```
 
-Or scan the QR code with your Android phone to download the file directly.
+Thanks to the server's HTTP headers, `wget` will automatically save the file as `src.zip`!
 
 > **Note:** If `qrcode` is not installed, the QR code section is skipped and you'll see a hint to install it.
-
----
-
-### Windows
-
-```text
-C:\QuickShare> python src\windows.py
-
-Available Files:
-
-[1] winpeas.exe
-[2] payload.exe
-[3] notes.txt
-
-Select file number: 1
-
-Sharing: winpeas.exe
-
-Download command:
-
-wget http://192.168.1.25:1234/winpeas.exe
-
-Copy this command into your VM.
-
-Waiting for one download...
-```
-
-Inside your VM, run:
-
-```bash
-wget http://192.168.1.25:1234/winpeas.exe
-```
-
-Once the download is complete, QuickShare automatically stops the HTTP server and removes the temporary directory.
 
 ---
 
